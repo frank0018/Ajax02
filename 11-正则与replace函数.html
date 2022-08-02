@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let  str = '<div>我是{{name}}</div>'
+        // 正则表达式中() 包起来的内容表示一个分组，可以通过分组来提取自己想要的内容
+        let pattern = /{{([a-zA-Z]+)}}/
+
+        let res = pattern.exec(str)
+
+        console.log('原str是：'+str);
+        str = str.replace(res[0],res[1])
+        console.log('替换后的str是：'+str);
+        
+    </script>
+</body>
+</html>

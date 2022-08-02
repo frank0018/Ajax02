@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str = '<div>我{{name}}今年{{ age }}岁了</div>'
+        let pattern = /{{\s*([a-zA-Z]+)\s*}}/
+
+        // 第一次replace
+        let str1 = pattern.exec(str)
+        console.log(str1);
+        str = str.replace(str1[0],str1[1])
+        console.log(str);
+
+        // 第2次replace
+        let str2 = pattern.exec(str)
+        console.log(str2);
+        str = str.replace(str2[0],str2[1])
+        console.log(str);
+
+        // 第3次replace
+        let str3 = pattern.exec(str)
+        console.log(str3);//返回为null
+
+    </script>
+</body>
+</html>

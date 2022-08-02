@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1导入模版引擎js文件 template  2个参数   数据 和 模板的id -->
+    <script src="./lib/template-web.js"></script>
+    <script src="./lib/jquery.js"></script>
+</head>
+<body>
+
+    <div id="text"></div>
+    <!-- 3定义模板 -->
+    <!-- 模板的html结构，必须定义到script中   type属性改为  text/html -->
+    <script text="text/html" id="tpl-user">
+        <h1>{{name}}--------{{age}}</h1>
+         {{@ test}}
+         <div>
+            {{if flag === 0}}
+            flag的值是0
+            {{else if flag === 1}}
+            flag的值是1
+            {{else if flag === 2}}
+            flag的值是2
+            {{/if}}
+        </div>
+        <ul>
+            {{each hobby}}
+            <li>索引是{{$index+1}},循环项是{{$value}}</li>
+            {{/each}}
+
+        </ul>
+
+        <h3>{{regtime | tanTime}}<h3>
+
+    </script>
+    
+    <script>
+        // 定义处理时间的过滤器
+        template.defaults.imports.tanTime = function(data){
+            console.log(data)
+            return data.toLocaleString()
+        }
+
+
+
+
+
+        // 2 定义数据
+        let  data = {name :'zhangsan哥',age:22,test:'<h3>测试h3</h3>',flag:2,hobby:['吃饭1','吃饭2','吃饭3','吃饭4'],regtime:new Date()}
+
+        // 4 调用template函数  函数返回的结果就是 html结构
+       console.log( template('tpl-user',data));
+        // 5 渲染页面
+       $('#text').html(template('tpl-user',data))
+    </script>
+</body>
+</html>
